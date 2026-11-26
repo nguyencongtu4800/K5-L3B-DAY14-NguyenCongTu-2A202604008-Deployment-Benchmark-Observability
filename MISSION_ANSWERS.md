@@ -1,7 +1,5 @@
 # Day 14 Lab — Mission Answers
 
-> Học viên: Nguyễn Công Tú · MSSV 2A202604008 · Lớp K5-L3B
-
 ---
 
 ## Part 1: Localhost vs Production
@@ -868,13 +866,11 @@ Khi Redis chết, `/ready` mất khoảng 4 s mới trả 503, vì mỗi lần t
 
 ## AI log
 
-| Công cụ | Dùng vào việc gì |
-|---|---|
-| Claude Code | CP1: chạy bản develop và production, thu output curl, phân tích anti-pattern và lỗi encoding trên Windows, soạn nháp Part 1. Đã tự đọc lại và đối chiếu với code. |
-| Claude Code | CP2: build 2 image, đo dung lượng, chạy container develop, đọc Dockerfile và compose để vẽ sơ đồ, soạn nháp Part 2. |
-| Claude Code | CP3: viết script test chạy trong WSL (401/403/200, JWT, vòng lặp 429, admin), đọc `auth.py`, `rate_limiter.py`, `cost_guard.py`, soạn nháp Part 4 và phát hiện 3 lỗi nhỏ trong code mẫu. |
-| Claude Code | CP4: chạy test graceful shutdown (SIGTERM giữa 2 request), stack scale 3 agent + Nginx + Redis, `test_stateless.py` và thí nghiệm tắt một instance. Phân tích lỗi event loop bị chặn và các lỗi nhỏ, soạn nháp Part 5. |
-| Claude Code | CP5: đọc `check_production_ready.py` để hiểu tiêu chí, viết code cho các TODO trong `06-lab-complete/` (config, auth, Redis, rate limiter, cost guard, main, Dockerfile, compose, .dockerignore, .env.example, railway.toml, render.yaml), chạy script chấm (PASS 12/12) và test bằng docker compose. Áp dụng các lỗi đã phát hiện ở Part 2, 4 và 5. Mình đã đọc lại từng file và có thể giải thích từng quyết định thiết kế. |
-| Claude Code | CP6: hướng dẫn các bước deploy Railway. Mình **tự** đăng nhập, tạo project, Redis, service, đặt biến (gồm API key) và chạy 4 lệnh tự kiểm. Claude viết phần so sánh `railway.toml`/`render.yaml`, pipeline Cloud Run và soạn `DEPLOYMENT.md`. |
-| Claude Code | CP7 (Part 7 Bước 1): thêm metric `agent_question_length_chars`, chạy load test (4 mức concurrency, 3 mức `MOCK_SLOW_RATE`), eval v1/v2, bổ sung 2 tài liệu vào `KNOWLEDGE_BASE` (đạt 23/23, 0 regression), viết job CI `.github/workflows/eval.yml`, điền mục 1–3 của `BENCHMARK_REPORT.md` và đối chiếu tự động số liệu với JSON. |
-| Claude Code | CP8 (Part 7 Bước 2): bật stack observability, Locust headless scale 1 và 3, đọc số Exercise 7.4 từ Prometheus, tìm trace chậm/lỗi qua Jaeger API, thí nghiệm alert A/C/D và đo thời gian tới firing, chụp ảnh Grafana bằng Chrome headless. Sửa lỗi `PYTHONUSERBASE` trong Dockerfile Part 7 và xử lý image Grafana bị hỏng do ổ C: đầy. Mình tự chụp 2 ảnh Jaeger và ảnh Prometheus alerts. Điền mục 4–6 của `BENCHMARK_REPORT.md`. |
+Công cụ: **Claude Code**, dùng xuyên suốt bài lab. Mọi số đo đều lấy từ lệnh chạy thật trên máy mình, không có số ước lượng.
+
+| Phần | Nhờ AI làm gì | Mình tự làm / tự kiểm tra |
+|---|---|---|
+| Part 1, 2, 4, 5 | Chạy ví dụ, thu output, soạn nháp câu trả lời | Đọc lại, đối chiếu với code và output |
+| Part 6 | Viết code cho các TODO trong `06-lab-complete/` | Đọc hiểu từng file, chạy `check_production_ready.py` → PASS 12/12 |
+| Part 3 | Hướng dẫn deploy, soạn `DEPLOYMENT.md` | Tự deploy Railway, đặt biến môi trường, chạy 4 lệnh tự kiểm, chụp ảnh |
+| Part 7 | Chạy load test, eval và stack observability, soạn nháp `BENCHMARK_REPORT.md` | Chụp ảnh Jaeger và Prometheus, kiểm tra số trong báo cáo khớp với JSON/CSV |
